@@ -104,7 +104,7 @@ coef = model.coef_             # coefficients(m)
 intercept = model.intercept_   # intercept(c)
 
 
-# getting coeffiecients in on dimension
+# getting coeffiecients in one dimension
 coefficient = []
 for i in coef[0]:
     coefficient.append(i)
