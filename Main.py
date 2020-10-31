@@ -153,7 +153,7 @@ def estimate():
   
 def prediction(l):
 	# Some compulsory values, if not give then show error
-    if(yearVar.get()==0 or seatVar.get()==0 or Fuel.current()==-1 or trans.current()== -1 or city.current()==-1 or owner.current==-1):
+    if(yearVar.get()==0 or seatVar.get()==0 or Fuel.current()==-1 or trans.current()== -1 or city.current()==-1 or owner.current()==-1):
         messagebox.showerror("Error", "Values are missing")
         return
     
