@@ -254,6 +254,7 @@ power.place(x=370,y=80)
 Fuel_l = Label(frame1,text = 'Fuel_type',bg='#557bc2',fg = 'white',font = myfont) 
 Fuel = ttk.Combobox(frame1)
 Fuel['values'] = all_fuel
+Fuel.set('Select')
 Fuel_l.place(x=15,y=120)
 Fuel.place(x=120,y=120)
 
@@ -262,6 +263,7 @@ Fuel.place(x=120,y=120)
 trans_l  = Label(frame1,text = "Transmition Type",bg='#557bc2',fg = 'white',font = myfont)
 trans = ttk.Combobox(frame1)
 trans['values'] = ('Automatic','Manual')
+trans.set('Select')
 trans_l.place(x=15,y=150)
 trans.place(x=120,y=150)
 
@@ -269,6 +271,7 @@ trans.place(x=120,y=150)
 city_l = Label(frame1,text = "City",bg='#557bc2',fg = 'white',font = myfont)
 city = ttk.Combobox(frame1)
 city['values']= all_Locations
+city.set('Select')
 city_l.place(x = 15,y=180)
 city.place(x=120,y=180)
 
@@ -276,6 +279,7 @@ city.place(x=120,y=180)
 owner_l = Label(frame1,text = 'Owner Type',bg='#557bc2',fg = 'white',font = myfont)
 owner = ttk.Combobox(frame1)
 owner['values'] = ("Fist","Second","Third","Fourth & Above")
+owner.set('Select')
 owner_l.place(x=15,y=210)
 owner.place(x=120,y=210)
 
