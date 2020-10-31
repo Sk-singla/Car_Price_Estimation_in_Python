@@ -68,15 +68,17 @@ train_data.replace({"First":1,"Second":2,"Third": 3,"Fourth & Above":4},inplace=
 train_data.drop(["Company"],axis=1,inplace=True)
 
 
+# Getting the different Location in the data and making column of each 
 var = 'Location'
 Location = train_data[[var]]
 Location = pd.get_dummies(Location,drop_first=True)
 
-
+# Getting the different Fuel Types in the data and making column of each
 var = 'Fuel_Type'
 Fuel_t = train_data[[var]]
 Fuel_t = pd.get_dummies(Fuel_t,drop_first=True)
 
+# Getting the different Transmission Types in the data and making column of each
 var = 'Transmission'
 Transmission = train_data[[var]]
 Transmission = pd.get_dummies(Transmission,drop_first=True)
@@ -86,7 +88,8 @@ Transmission = pd.get_dummies(Transmission,drop_first=True)
 final_train= pd.concat([train_data,Location,Fuel_t,Transmission],axis=1)
 
 
-# Linear Regression - y= mx+c
+# Linear Regression - y= m1x1 + m2x2 + ... mnxn + C
+# X = Independent variable
 X = final_train.loc[:,['Year', 'Kilometers_Driven', 'Owner_Type', 'Seats',
        'Mileage(km/kg)', 'Engine(CC)', 'Power(bhp)', 
        'Location_Bangalore', 'Location_Chennai', 'Location_Coimbatore',
@@ -94,14 +97,16 @@ X = final_train.loc[:,['Year', 'Kilometers_Driven', 'Owner_Type', 'Seats',
        'Location_Kochi', 'Location_Kolkata', 'Location_Mumbai',
        'Location_Pune', 'Fuel_Type_Diesel', 'Fuel_Type_LPG',
        'Fuel_Type_Petrol', 'Transmission_Manual']]
-
+# y = Dependent Variable
 y = final_train.loc[:,['Price']]
 
 model = linear_model.LinearRegression()
+# Passing the values of X and y in Linear Regression Model
 model.fit(X,y)
 
-coef = model.coef_             # coefficients(m)
-intercept = model.intercept_   # intercept(c)
+# Getting the Coefficients and Intercept
+coef = model.coef_             # coefficients(m1,m2,....,mn)
+intercept = model.intercept_   # intercept(C)
 
 
 # getting coeffiecients in one dimension
@@ -110,7 +115,7 @@ for i in coef[0]:
     coefficient.append(i)
     
 
-# Getting All Locations and All Fuel types in dataset to show in gui
+# Getting All Locations and All Fuel types from dataset in tuple to show in gui
 all_Locations = [i[9:] for i in Location.columns]
 all_fuel = [i[10:] for i in Fuel_t.columns]
 all_fuel = tuple(all_fuel)
@@ -118,7 +123,7 @@ all_Locations = tuple(all_Locations)
 
 
 
-# ==========Functions to calculate===================
+# ==========Functions to calculate Price===================
 
 def estimate():
 	# if car is older than 15 years(can't sell) or year is more than current year
@@ -288,4 +293,5 @@ l = [yearVar,kmVar,mileageVar,seatVar,engineVar,powerVar]
 # Predict Button
 predict = Button(frame1,text='PREDICT' , command=lambda: prediction(l))
 predict.place(x=225,y=260)
+
 win.mainloop()
